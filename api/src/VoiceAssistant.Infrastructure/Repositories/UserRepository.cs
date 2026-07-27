@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using VoiceAssistant.Application.Abstractions;
+using VoiceAssistant.Application.Abstractions.Users;
 using VoiceAssistant.Domain.Models;
 
 namespace VoiceAssistant.Infrastructure.Repositories;

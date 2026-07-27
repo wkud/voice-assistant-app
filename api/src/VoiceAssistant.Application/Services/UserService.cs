@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using VoiceAssistant.Application.Abstractions;
-using VoiceAssistant.Application.Dtos.User;
+using VoiceAssistant.Application.Abstractions.Users;
+using VoiceAssistant.Application.Dtos.Users;
 using VoiceAssistant.Domain.Enums;
 using VoiceAssistant.Domain.Models;
 

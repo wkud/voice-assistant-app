@@ -1,0 +1,29 @@
+context:
+  expressions:
+    addToCart_single:
+      - Buy $shoppingItemName:itemName
+    addToCart_count:
+      - Buy $pv.TwoDigitInteger:count $shoppingItemName:itemName
+    addToCart_amount:
+      - Buy $pv.SingleDigitInteger:amountInHundreds hundred
+        $pv.TwoDigitInteger:amount $shoppingUnit:unit
+        $shoppingItemName:itemName
+      - Buy $pv.SingleDigitInteger:amountInHundreds hundred $shoppingUnit:unit
+        of $shoppingItemName:itemName
+      - Buy $pv.Percent:amount $shoppingUnit:unit of $shoppingItemName:itemName
+  slots:
+    shoppingItemName:
+      - oat flakes
+      - orange juice
+      - cheese
+      - bread
+    shoppingUnit:
+      - milliliters
+      - milliliter
+      - grams
+      - gram
+      - kilograms
+      - kilogram
+      - liters
+      - liter
+  macros: {}

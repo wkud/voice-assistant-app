@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using VoiceAssistant.Application.Abstractions;
+using VoiceAssistant.Application.Abstractions.ShoppingItems;
+using VoiceAssistant.Application.Abstractions.Users;
 using VoiceAssistant.Infrastructure.Options;
 using VoiceAssistant.Infrastructure.Repositories;
 
@@ -10,7 +12,15 @@ namespace VoiceAssistant.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IShoppingItemRepository, ShoppingItemRepository>();
+        
+        return services;
+    }
+    
+    public static IServiceCollection AddDatabaseInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection")
                                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -35,8 +45,6 @@ public static class DependencyInjection
                 })
                 .UseSnakeCaseNamingConvention();
         });
-
-        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }

@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using VoiceAssistant.Application.Abstractions;
-using VoiceAssistant.Application.Dtos.User;
+using VoiceAssistant.Application.Abstractions.Users;
+using VoiceAssistant.Application.Dtos.Users;
 
 namespace VoiceAssistant.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]s")]
 public class UserController : ControllerBase
 {
     private readonly IUserService _service;
 
-    public UserController(IUserService service, ILogger<UserController> logger)
+    public UserController(IUserService service)
     {
         _service = service;
     }
@@ -18,15 +19,15 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<UserDto>> Create([FromBody] CreateUserDto dto)
     {
-        var promptDto = await _service.CreateAsync(dto);
-        return CreatedAtAction(nameof(GetById), new { id = promptDto.Id }, promptDto);
+        var userDto = await _service.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = userDto.Id }, userDto);
     }
 
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<UserDto>> GetById(Guid id)
     {
-        var promptDto = await _service.GetByIdAsync(id);
-        return promptDto is null ? NotFound() : Ok(promptDto);
+        var userDto = await _service.GetByIdAsync(id);
+        return userDto is null ? NotFound() : Ok(userDto);
     }
 
     [HttpGet]
@@ -36,8 +37,8 @@ public class UserController : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<ActionResult<UserDto>> Update(Guid id, [FromBody] UpdateUserDto dto)
     {
-        var promptDto = await _service.UpdateAsync(id, dto);
-        return promptDto is null ? NotFound() : Ok(promptDto);
+        var userDto = await _service.UpdateAsync(id, dto);
+        return userDto is null ? NotFound() : Ok(userDto);
     }
 
     [HttpDelete("{id:guid}")]

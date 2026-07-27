@@ -1,6 +1,7 @@
 using VoiceAssistant.Domain.Models;
 
-namespace VoiceAssistant.Application.Abstractions;
+namespace VoiceAssistant.Application.Abstractions.Users;
+
 
 public interface IUserRepository
 {

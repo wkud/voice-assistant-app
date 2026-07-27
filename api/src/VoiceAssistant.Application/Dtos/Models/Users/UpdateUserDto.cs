@@ -1,6 +1,6 @@
 using VoiceAssistant.Domain.Enums;
 
-namespace VoiceAssistant.Application.Dtos.User;
+namespace VoiceAssistant.Application.Dtos.Users;
 
 public record UpdateUserDto
 {

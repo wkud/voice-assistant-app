@@ -1,0 +1,43 @@
+api:
+  intents:
+    addToCart_single:
+      - $shoppingItemName: itemName
+    addToCart_count:
+      - $pv.TwoDigitInteger: count
+      - $shoppingItemName: itemName
+    addToCart_amount:
+      - $pv.SingleDigitInteger: amountInHundreds
+      - $pv.TwoDigitInteger: amount
+      - $shoppingUnit: unit
+      - $shoppingItemName: itemName
+
+  endpoints:
+    addToCart:
+      intents: 
+        - addToCart_single
+        - addToCart_count
+        - addToCart_amount
+      parameters:
+        itemName: string
+        count: integer
+        amountInHundreds: integer
+        amount: integer
+        unit: string
+
+  databaseObjects:
+    shoppingItemName: // list will be extended often. make it not an enum, but a DB object
+      - "oat flakes"
+      - "orange juice"
+      - "cheese"
+      - "bread"
+
+  enums:
+    shoppingUnit:
+      - "milliliters"
+      - "milliliter"
+      - "grams"
+      - "gram"
+      - "kilograms"
+      - "kilogram"
+      - "liters"
+      - "liter"

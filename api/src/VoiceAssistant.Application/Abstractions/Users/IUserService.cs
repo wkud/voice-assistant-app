@@ -1,6 +1,6 @@
-using VoiceAssistant.Application.Dtos.User;
+using VoiceAssistant.Application.Dtos.Users;
 
-namespace VoiceAssistant.Application.Abstractions;
+namespace VoiceAssistant.Application.Abstractions.Users;
 
 public interface IUserService
 {
